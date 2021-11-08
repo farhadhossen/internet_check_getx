@@ -34,10 +34,7 @@ class NetworkController extends GetxController{
     return _updateConnectionStatus(result);
   }
 
-  @override
-  void onClose() {
 
-  }
 
   _updateConnectionStatus(ConnectivityResult result) {
 
@@ -55,6 +52,12 @@ class NetworkController extends GetxController{
         Get.snackbar("Network Error", "Failed to get network");
         break;
     }
+  }
+
+  @override
+  void onClose() {
+
+    _connectivitySubscription.cancel();
   }
 
 
